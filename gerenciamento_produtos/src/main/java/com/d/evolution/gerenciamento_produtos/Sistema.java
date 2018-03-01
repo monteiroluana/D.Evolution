@@ -41,13 +41,25 @@ public class Sistema {
         return lista;
     }
     
-    public void inserir ()throws ClassNotFoundException, SQLException{
-    try (Connection conn = obterConexao();
+    public void inserir (Produto produto){
+    try{
+    Connection conn = obterConexao();
                 PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
                         + " quantidade, dt_cadastro VALUES (?, ?, ?, ?, ?, ?))");
-                ResultSet resultados = stmt.executeQuery();){}
-    
-    }
+                stmt.setString(1, produto.getNome());
+                stmt.setString(2, produto.getDescricao());
+                stmt.setDouble(2, produto.getPreco_compra());
+                stmt.setDouble(4, produto.getPreco_venda());
+                stmt.setInt(5, produto.getQuantidade());
+                stmt.setDate(6, produto.getTime());
+                
+                stmt.execute();
+    }catch (ClassNotFoundException ex ){
+            System.err.println(ex.getMessage());
+        }catch (SQLException e){
+            System.err.println(e.getMessage());
+        }
+        }
 
     public static void main(String[] args){
         //listar as categorias dos produtos da lista
