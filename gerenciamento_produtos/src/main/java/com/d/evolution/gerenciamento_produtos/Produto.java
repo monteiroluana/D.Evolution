@@ -1,12 +1,21 @@
 package com.d.evolution.gerenciamento_produtos;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
  * @author rodrigo.nhsilva
  */
-class Produto {
+public class Produto {
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
 
     public String getNome() {
         return nome;
@@ -48,17 +57,18 @@ class Produto {
         this.quantidade = quantidade;
     }
 
-    public Date getTime() {
+    public Timestamp getTime() {
         return time;
     }
 
-    public void setTime(Date time) {
+    public void setTime(Timestamp time) {
         this.time = time;
     }
     private String nome;
     private String descricao;
+    private String categoria;
     private double preco_compra;
     private double preco_venda;
     private int quantidade;
-    private Date time;
+    private Timestamp time;
 }

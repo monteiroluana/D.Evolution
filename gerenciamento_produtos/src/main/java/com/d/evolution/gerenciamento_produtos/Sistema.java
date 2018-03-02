@@ -1,5 +1,6 @@
 package com.d.evolution.gerenciamento_produtos;
 
+import com.d.evolution.gerenciamento_produtos.interfaces.Cadastrar_produtos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -45,13 +46,13 @@ public class Sistema {
     try{
     Connection conn = obterConexao();
                 PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
-                        + " quantidade, dt_cadastro VALUES (?, ?, ?, ?, ?, ?))");
+                        + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
                 stmt.setString(1, produto.getNome());
                 stmt.setString(2, produto.getDescricao());
-                stmt.setDouble(2, produto.getPreco_compra());
+                stmt.setDouble(3, produto.getPreco_compra());
                 stmt.setDouble(4, produto.getPreco_venda());
                 stmt.setInt(5, produto.getQuantidade());
-                stmt.setDate(6, produto.getTime());
+                stmt.setTimestamp(6, produto.getTime());
                 
                 stmt.execute();
     }catch (ClassNotFoundException ex ){
@@ -74,5 +75,9 @@ public class Sistema {
         }catch (SQLException e){
             System.err.println(e.getMessage());
         }
+        
+        Cadastrar_produtos cad = new Cadastrar_produtos();
+        
+        cad.main();
     }
 }
