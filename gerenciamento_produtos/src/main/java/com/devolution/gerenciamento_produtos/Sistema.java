@@ -71,9 +71,11 @@ public class Sistema {
 
         String sql = "INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
                 + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
+        
+         Connection conn = null;
 
         try {
-            Connection conn = Conexao.obterConexao();
+            conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, produto.getNome());
@@ -89,7 +91,6 @@ public class Sistema {
             System.err.println(ex.getMessage());
             
         } finally {
-            Connection conn = (Connection) new Conexao();
             conn.close();
         }
     }
@@ -99,9 +100,11 @@ public class Sistema {
         String sql = "UPDATE produto SET  nome = ?, descricao = ?, preco_compra = ?, preco_venda = ?,"
                 + " quantidade = ?"
                 + " WHERE id = ? ";
+        
+        Connection conn = null;
 
         try {
-            Connection conn = Conexao.obterConexao();
+            conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
 
             stmt.setString(1, produto.getNome());
@@ -116,23 +119,23 @@ public class Sistema {
             System.err.println(e.getMessage());
 
         } finally {
-            Connection conn = (Connection) new Conexao();
             conn.close();
         }
     }
 
     public void excluir(int id) throws ClassNotFoundException, SQLException {
         String sql = "Delete from PRODUTO where id = ?";
+        
+        Connection conn = null;
 
         try {
-            Connection conn = Conexao.obterConexao();
+            conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.execute();
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
         } finally {
-            Connection conn = (Connection) new Conexao();
             conn.close();
         }
     }
