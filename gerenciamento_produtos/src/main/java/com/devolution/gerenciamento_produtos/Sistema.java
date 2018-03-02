@@ -96,6 +96,24 @@ public class Sistema {
             System.err.println(e.getMessage());
         }
     }
+    
+    public void excluir(int id) throws ClassNotFoundException, SQLException
+    {
+    String sql = "Delete from PRODUTO where id = ?";
+    
+    try {
+           Connection conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.execute();
+            
+    }catch(SQLException e){
+    System.err.println(e.getMessage());
+    }
+    finally{
+        Connection conn = (Connection) new Conexao();
+        conn.close();
+    }
+    }
 
     public static void main(String[] args) {
         //listar as categorias dos produtos da lista
