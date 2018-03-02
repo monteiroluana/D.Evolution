@@ -1,7 +1,5 @@
 package com.devolution.gerenciamento_produtos;
 
-
-
 import com.devolution.gerenciamento_produtos.interfaces.Cadastrar_produtos;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,7 +9,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,10 +17,10 @@ import javax.swing.table.DefaultTableModel;
 public class Sistema {
 
     static Cadastrar_produtos cad = new Cadastrar_produtos();
-    
-        public List<Produto> listar() throws ClassNotFoundException, SQLException {
+
+    public List<Produto> listar() throws ClassNotFoundException, SQLException {
         List<Produto> lista = new ArrayList<Produto>();
-               
+
         //conexão com o banco
         try (Connection conn = Conexao.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement("SELECT * FROM PRODUTOBD.PRODUTO");
@@ -50,8 +47,7 @@ public class Sistema {
     }
 
     public void categoriaProduto(Produto produto) {
-            
-        
+
         try {
             //essa classe ainda não funciona completamente            
             Connection conn = Conexao.obterConexao();
@@ -76,7 +72,6 @@ public class Sistema {
 
     public void inserir(Produto produto) {
         
-        
         try {
             Connection conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
@@ -96,23 +91,54 @@ public class Sistema {
             System.err.println(e.getMessage());
         }
     }
-    
-    public void excluir(int id) throws ClassNotFoundException, SQLException
-    {
-    String sql = "Delete from PRODUTO where id = ?";
-    
-    try {
-           Connection conn = Conexao.obterConexao();
+
+    public void excluir(int id) throws ClassNotFoundException, SQLException {
+        String sql = "Delete from PRODUTO where id = ?";
+
+        try {
+            Connection conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.execute();
+
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        } finally {
+            Connection conn = (Connection) new Conexao();
+            conn.close();
+        }
+    }
+    
+    public void editar (Produto produto){
+       
+        String sql = "UPDATE produto SET  nome = ?, descricao = ?, preco_compra = ?, preco_venda = ?,"
+                + " quantidade = ?"
+                + " WHERE id = ? ";
+
+        try {
+            Connection conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
             
-    }catch(SQLException e){
-    System.err.println(e.getMessage());
-    }
-    finally{
-        Connection conn = (Connection) new Conexao();
-        conn.close();
-    }
+
+            preparedStatement.setString(1, produto.getNome());
+            preparedStatement.setString(2, produto.getDescricao());
+            preparedStatement.setDouble(3, produto.getPreco_compra());
+            preparedStatement.setDouble(4, produto.getPreco_venda());
+            preparedStatement.setInt(5, produto.getQuantidade());
+            
+            stmt.execute();
+
+            //Executa o comando no banco de dados;
+            preparedStatement.execute();
+        } finally {
+            //Se o statement ainda estiver aberto, realiza seu fechamento
+            if (preparedStatement != null && !preparedStatement.isClosed()) {
+                preparedStatement.close();
+            }
+            //Se a conexão ainda estiver aberta, realiza seu fechamento
+            if (connection != null && !connection.isClosed()) {
+                connection.close();
+            }
+        }
     }
 
     public static void main(String[] args) {

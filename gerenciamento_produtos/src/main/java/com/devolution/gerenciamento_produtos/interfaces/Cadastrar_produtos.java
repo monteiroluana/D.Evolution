@@ -27,6 +27,11 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
      */
     public Cadastrar_produtos() {
         initComponents();
+        
+        //faz com que a coluna do ID não seja mostrada ao usuário
+        tabela.getColumnModel().getColumn(0).setMinWidth(0);
+        tabela.getColumnModel().getColumn(0).setMaxWidth(0);
+        tabela.getColumnModel().getColumn(0).setWidth(0);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,6 +43,8 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabela = new javax.swing.JTable();
         atualizarButton = new javax.swing.JButton();
+        buttonExcluir = new javax.swing.JButton();
+        buttonEditar = new javax.swing.JButton();
         panelCadastro = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         fieldNome = new javax.swing.JTextField();
@@ -58,21 +65,19 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         cat3 = new javax.swing.JCheckBox();
         cat4 = new javax.swing.JCheckBox();
         cat5 = new javax.swing.JCheckBox();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         tabela.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Nome", "Descrição", "Compra (R$)", "Venda (R$)", "Quantidade", "Data"
+                "ID", "Nome", "Descrição", "Compra (R$)", "Venda (R$)", "Quantidade", "Data"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -97,25 +102,46 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
             }
         });
 
+        buttonExcluir.setText("Excluir");
+        buttonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonExcluirActionPerformed(evt);
+            }
+        });
+
+        buttonEditar.setText("Editar");
+        buttonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelVisualizarLayout = new javax.swing.GroupLayout(panelVisualizar);
         panelVisualizar.setLayout(panelVisualizarLayout);
         panelVisualizarLayout.setHorizontalGroup(
             panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelVisualizarLayout.createSequentialGroup()
-                .addGap(323, 323, 323)
+                .addGap(165, 165, 165)
+                .addComponent(buttonEditar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(buttonExcluir)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(atualizarButton)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisualizarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
         panelVisualizarLayout.setVerticalGroup(
             panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisualizarLayout.createSequentialGroup()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(atualizarButton))
+                .addGroup(panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atualizarButton)
+                    .addComponent(buttonExcluir)
+                    .addComponent(buttonEditar)))
         );
 
         tabbedMain.addTab("Visualizar Produtos", panelVisualizar);
@@ -257,8 +283,6 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         );
 
         tabbedMain.addTab("Cadastrar Produtos", panelCadastro);
-        tabbedMain.addTab("Excluir produtos", jTabbedPane3);
-        tabbedMain.addTab("Alterar Produtos", jTabbedPane4);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -266,8 +290,8 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(tabbedMain, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addComponent(tabbedMain, javax.swing.GroupLayout.PREFERRED_SIZE, 515, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -287,12 +311,14 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         Timestamp hoje = new Timestamp(System.currentTimeMillis());//armazena a data e hora do sistema
         Produto pro = new Produto();
         Sistema sis = new Sistema();
+        
         //pega os dados dos campos e os adiciona ao objeto pro da classe produto
         pro.setDescricao(fieldDescricao.getText());
         pro.setNome(fieldNome.getText());
         pro.setPreco_compra(Double.parseDouble(fieldPrecoCompra.getText()));
         pro.setPreco_venda(Double.parseDouble(fieldPrecoVenda.getText()));
         pro.setQuantidade(Integer.parseInt(fieldQntd.getText()));
+        
         pro.setTime(hoje);
         sis.inserir(pro);
         //----------------------------------------------------------------------
@@ -342,11 +368,97 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
 
     }//GEN-LAST:event_atualizarButtonActionPerformed
 
+    private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
+       //ARRUMAR
+
+//Verifica se há itens selecionados para exclusão.
+        //Caso negativo, ignora o comando
+        if (tabela.getSelectedRow() >= 0) {
+
+            //Obtém a linha do item selecionado
+            final int row = tabela.getSelectedRow();
+
+            //Obtém o nome do produto da linha indicada para exibição
+            //de mensagem de confirmação de exclusão utilizando seu número
+            String produto = (String) tabela.getValueAt(row, 2);
+
+            //Mostra o diálogo de confirmação de exclusão
+            int resposta = JOptionPane.showConfirmDialog(rootPane,
+                    "Excluir o produto \"" + produto + "\"?",
+                    "Confirmar exclusão", JOptionPane.YES_NO_OPTION);
+
+            //Se o valor de resposta for "Sim" para a exclusão
+            if (resposta == JOptionPane.YES_OPTION) {
+                try {
+                    //Obtém o ID do produto
+                    Integer id = (Integer) tabela.getValueAt(row, 0);
+
+                    //Solicita ao serviço a inativação do produto com o ID
+               //     ServicoProduto.excluirProduto(id);
+
+                    //Atualiza a lista após a "exclusão"
+                    this.atualizaTabela();
+
+                } catch (Exception e) {
+                    //Se ocorrer algum erro técnico, mostra-o no console,
+                    //mas esconde-o do usuário
+                    e.printStackTrace();
+
+                    //Exibe uma mensagem de erro genérica ao usuário
+                    JOptionPane.showMessageDialog(rootPane, e.getMessage(),
+                            "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }//GEN-LAST:event_buttonExcluirActionPerformed
+
+    private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+        //ARRUMAR PARA CHAMAR PANEL
+        
+        try {
+            //Obtém a linha selecionada da tabela de resultados
+            final int row = tabela.getSelectedRow();
+
+            //Obtém o valor do ID da coluna "ID" da tabela de resultados
+            Integer id = (Integer) tabela.getValueAt(row, 0);
+
+            //Com o ID da coluna, chama o serviço de produto para
+            //obter o produto com dados atualizados do mock
+            Produto jogo = ServicoProduto.obterProduto(id);
+
+            //Cria uma nova instância da tela de edição,
+            //configura o produto selecionado como elemento a
+            //ser editado e mostra a tela de edição.
+            //Para exibir a tela, é necessário adicioná-la ao
+            //componente de desktop, o "pai" da janela corrente
+            formEditarJogo.dispose();
+            formEditarJogo = new FormEditarJogo();
+            formEditarJogo.setProduto(jogo);
+            formEditarJogo.setTitle(jogo.getNome());
+            this.getParent().add(formEditarJogo);
+            this.openFrameInCenter(formEditarJogo);
+            formEditarJogo.toFront();
+
+        } catch (Exception e) {
+            //Se ocorrer algum erro técnico, mostra-o no console,
+            //mas esconde-o do usuário
+            e.printStackTrace();
+
+            //Exibe uma mensagem de erro genérica ao usuário
+            JOptionPane.showMessageDialog(rootPane, "Não é possível "
+                    + "exibir os detalhes deste produto.",
+                    "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_buttonEditarActionPerformed
+
     static public void atualizaTabela() throws ClassNotFoundException, SQLException {
         //Este método atualiza a tabela com os dados novos
         List<Produto> lista = sis.listar();//o método listar busca todos os produtos no banco e retorna um array cheio deles
+        
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        
         model.setRowCount(0);//zera a tabela para colocar os dados novos
+        
         for (int i = 0; i < lista.size(); i++) {
             Produto pro = lista.get(i);
             if (pro != null) {
@@ -403,6 +515,8 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton atualizarButton;
+    private javax.swing.JButton buttonEditar;
+    private javax.swing.JButton buttonExcluir;
     private javax.swing.JToggleButton buttonSalvar;
     private javax.swing.JCheckBox cat1;
     private javax.swing.JCheckBox cat2;
@@ -417,8 +531,6 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
     private javax.swing.JLabel lblCategoria;
     private javax.swing.JLabel lblCompra;
     private javax.swing.JLabel lblDescricao;
