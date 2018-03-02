@@ -6,8 +6,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,69 +17,90 @@ import java.util.List;
  */
 public class Sistema {
 
+    static Cadastrar_produtos cad = new Cadastrar_produtos();
+
     //conexão com o banco
     private Connection obterConexao() throws ClassNotFoundException, SQLException {
 
         Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PRODUTOBD", "root", "");
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PRODUTOBD", "root", "rodrigoo");
         return conn;
     }
 
-    public List<Categoria> listar() throws ClassNotFoundException, SQLException {
-        List<Categoria> lista = new ArrayList<Categoria>();
+    public List<Produto> listar() throws ClassNotFoundException, SQLException {
+        List<Produto> lista = new ArrayList<Produto>();
 
         try (Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM PRODUTOBD.CATEGORIA");
+                PreparedStatement stmt = conn.prepareStatement("SELECT * FROM PRODUTOBD.PRODUTO");
                 ResultSet resultados = stmt.executeQuery();) {
-            while (resultados.next()) {
-                int id = resultados.getInt("id");
-                String nome = resultados.getString("nome");
-                Categoria ca = new Categoria();
-                ca.setId(id);
-                ca.setNome(nome);
 
-                lista.add(ca);
+            while (resultados.next()) {
+                String nome = resultados.getString("nome");
+                String descricao = resultados.getString("descricao");
+                double venda = resultados.getDouble("preco_venda");
+                double compra = resultados.getDouble("preco_compra");
+                int quantidadde = resultados.getInt("quantidade");
+                Timestamp data = resultados.getTimestamp("dt_cadastro");
+                Produto pro = new Produto();
+                pro.setNome(nome);
+                pro.setDescricao(descricao);
+                pro.setPreco_compra(compra);
+                pro.setPreco_venda(venda);
+                pro.setQuantidade(quantidadde);
+                pro.setTime(data);
+                lista.add(pro);
             }
         }
         return lista;
     }
-    
-    public void inserir (Produto produto){
-    try{
-    Connection conn = obterConexao();
-                PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
-                        + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
-                stmt.setString(1, produto.getNome());
-                stmt.setString(2, produto.getDescricao());
-                stmt.setDouble(3, produto.getPreco_compra());
-                stmt.setDouble(4, produto.getPreco_venda());
-                stmt.setInt(5, produto.getQuantidade());
-                stmt.setTimestamp(6, produto.getTime());
-                
-                stmt.execute();
-    }catch (ClassNotFoundException ex ){
-            System.err.println(ex.getMessage());
-        }catch (SQLException e){
-            System.err.println(e.getMessage());
-        }
-        }
 
-    public static void main(String[] args){
-        //listar as categorias dos produtos da lista
-        Sistema sistema = new Sistema();
+    public void categoriaProduto(Produto produto) {
         try {
-            List<Categoria> lista = sistema.listar();
-            for (Categoria ca : lista) {
-                System.out.println(ca.getId() + ", " + ca.getNome());
-            }
-        }catch (ClassNotFoundException ex ){
+            //essa classe ainda não funciona completamente
+            
+            Connection conn = obterConexao();
+            PreparedStatement pegaID = conn.prepareStatement("SELECT * FROM PRODUTOBD.PRODUTO WHERE NOME = (?) AND DESCRICAO = (?)");
+            pegaID.setString(1, produto.getNome());
+            pegaID.setString(2, produto.getDescricao());
+            ResultSet resultados = pegaID.executeQuery();
+            int id = resultados.getInt("id");//o erro acontece nessa linha. Aparentemente a query retorna vazia mesmo colocando dados certos
+            produto.setId_produto(id);
+            //código que pega o id do produto recém adicionado ao banco
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTO_CATEGORIA (PRODUTOBD.PRODUTO.ID,"
+                    + " ID_CATEGORIA) VALUES (?, ?)");
+            stmt.setInt(1, produto.getId_produto());
+            stmt.setInt(2, produto.getId_categoria());
+            stmt.execute();
+        } catch (ClassNotFoundException ex) {
             System.err.println(ex.getMessage());
-        }catch (SQLException e){
+        } catch (SQLException e) {
             System.err.println(e.getMessage());
         }
-        
-        Cadastrar_produtos cad = new Cadastrar_produtos();
-        
+    }
+
+    public void inserir(Produto produto) {
+        try {
+            Connection conn = obterConexao();
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
+                    + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
+            stmt.setString(1, produto.getNome());
+            stmt.setString(2, produto.getDescricao());
+            stmt.setDouble(3, produto.getPreco_compra());
+            stmt.setDouble(4, produto.getPreco_venda());
+            stmt.setInt(5, produto.getQuantidade());
+            stmt.setTimestamp(6, produto.getTime());
+
+            stmt.execute();
+
+        } catch (ClassNotFoundException ex) {
+            System.err.println(ex.getMessage());
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+    public static void main(String[] args) {
+        //listar as categorias dos produtos da lista
         cad.main();
     }
 }
