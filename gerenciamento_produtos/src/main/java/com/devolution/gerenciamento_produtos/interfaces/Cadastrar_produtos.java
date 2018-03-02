@@ -5,8 +5,8 @@
  */
 package com.devolution.gerenciamento_produtos.interfaces;
 
-import com.d.evolution.gerenciamento_produtos.Produto;
-import com.d.evolution.gerenciamento_produtos.Sistema;
+import com.devolution.gerenciamento_produtos.Produto;
+import com.devolution.gerenciamento_produtos.Sistema;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;

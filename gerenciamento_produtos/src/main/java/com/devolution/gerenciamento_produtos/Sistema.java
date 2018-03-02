@@ -2,7 +2,7 @@ package com.devolution.gerenciamento_produtos;
 
 
 
-import com.d.evolution.gerenciamento_produtos.interfaces.Cadastrar_produtos;
+import com.devolution.gerenciamento_produtos.interfaces.Cadastrar_produtos;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
