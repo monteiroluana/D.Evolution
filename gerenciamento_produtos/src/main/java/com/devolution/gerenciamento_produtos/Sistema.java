@@ -2,7 +2,6 @@ package com.devolution.gerenciamento_produtos;
 
 import com.devolution.gerenciamento_produtos.interfaces.Cadastrar_produtos;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,19 +62,20 @@ public class Sistema {
             stmt.setInt(1, produto.getId_produto());
             stmt.setInt(2, produto.getId_categoria());
             stmt.execute();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             System.err.println(ex.getMessage());
-        } catch (SQLException e) {
-            System.err.println(e.getMessage());
         }
     }
 
-    public void inserir(Produto produto) {
-        
+    public void inserir(Produto produto) throws SQLException {
+
+        String sql = "INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
+                + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
+
         try {
             Connection conn = Conexao.obterConexao();
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
-                    + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getDescricao());
             stmt.setDouble(3, produto.getPreco_compra());
@@ -85,10 +85,39 @@ public class Sistema {
 
             stmt.execute();
 
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             System.err.println(ex.getMessage());
+            
+        } finally {
+            Connection conn = (Connection) new Conexao();
+            conn.close();
+        }
+    }
+
+    public void editar(Produto produto) throws ClassNotFoundException, SQLException {
+
+        String sql = "UPDATE produto SET  nome = ?, descricao = ?, preco_compra = ?, preco_venda = ?,"
+                + " quantidade = ?"
+                + " WHERE id = ? ";
+
+        try {
+            Connection conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+
+            stmt.setString(1, produto.getNome());
+            stmt.setString(2, produto.getDescricao());
+            stmt.setDouble(3, produto.getPreco_compra());
+            stmt.setDouble(4, produto.getPreco_venda());
+            stmt.setInt(5, produto.getQuantidade());
+
+            stmt.execute();
+
         } catch (SQLException e) {
             System.err.println(e.getMessage());
+
+        } finally {
+            Connection conn = (Connection) new Conexao();
+            conn.close();
         }
     }
 
@@ -105,39 +134,6 @@ public class Sistema {
         } finally {
             Connection conn = (Connection) new Conexao();
             conn.close();
-        }
-    }
-    
-    public void editar (Produto produto){
-       
-        String sql = "UPDATE produto SET  nome = ?, descricao = ?, preco_compra = ?, preco_venda = ?,"
-                + " quantidade = ?"
-                + " WHERE id = ? ";
-
-        try {
-            Connection conn = Conexao.obterConexao();
-            PreparedStatement stmt = conn.prepareStatement(sql);
-            
-
-            preparedStatement.setString(1, produto.getNome());
-            preparedStatement.setString(2, produto.getDescricao());
-            preparedStatement.setDouble(3, produto.getPreco_compra());
-            preparedStatement.setDouble(4, produto.getPreco_venda());
-            preparedStatement.setInt(5, produto.getQuantidade());
-            
-            stmt.execute();
-
-            //Executa o comando no banco de dados;
-            preparedStatement.execute();
-        } finally {
-            //Se o statement ainda estiver aberto, realiza seu fechamento
-            if (preparedStatement != null && !preparedStatement.isClosed()) {
-                preparedStatement.close();
-            }
-            //Se a conexão ainda estiver aberta, realiza seu fechamento
-            if (connection != null && !connection.isClosed()) {
-                connection.close();
-            }
         }
     }
 
