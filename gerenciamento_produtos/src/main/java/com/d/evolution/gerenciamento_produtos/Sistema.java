@@ -1,5 +1,7 @@
 package com.d.evolution.gerenciamento_produtos;
 
+
+
 import com.d.evolution.gerenciamento_produtos.interfaces.Cadastrar_produtos;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,19 +20,12 @@ import javax.swing.table.DefaultTableModel;
 public class Sistema {
 
     static Cadastrar_produtos cad = new Cadastrar_produtos();
-
-    //conexão com o banco
-    private Connection obterConexao() throws ClassNotFoundException, SQLException {
-
-        Class.forName("com.mysql.jdbc.Driver");
-        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/PRODUTOBD", "root", "rodrigoo");
-        return conn;
-    }
-
-    public List<Produto> listar() throws ClassNotFoundException, SQLException {
+    
+        public List<Produto> listar() throws ClassNotFoundException, SQLException {
         List<Produto> lista = new ArrayList<Produto>();
-
-        try (Connection conn = obterConexao();
+               
+        //conexão com o banco
+        try (Connection conn = Conexao.obterConexao();
                 PreparedStatement stmt = conn.prepareStatement("SELECT * FROM PRODUTOBD.PRODUTO");
                 ResultSet resultados = stmt.executeQuery();) {
 
@@ -55,10 +50,11 @@ public class Sistema {
     }
 
     public void categoriaProduto(Produto produto) {
-        try {
-            //essa classe ainda não funciona completamente
             
-            Connection conn = obterConexao();
+        
+        try {
+            //essa classe ainda não funciona completamente            
+            Connection conn = Conexao.obterConexao();
             PreparedStatement pegaID = conn.prepareStatement("SELECT * FROM PRODUTOBD.PRODUTO WHERE NOME = (?) AND DESCRICAO = (?)");
             pegaID.setString(1, produto.getNome());
             pegaID.setString(2, produto.getDescricao());
@@ -79,8 +75,10 @@ public class Sistema {
     }
 
     public void inserir(Produto produto) {
+        
+        
         try {
-            Connection conn = obterConexao();
+            Connection conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
                     + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)");
             stmt.setString(1, produto.getNome());
