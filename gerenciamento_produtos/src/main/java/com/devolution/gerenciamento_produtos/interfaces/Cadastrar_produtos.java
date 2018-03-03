@@ -305,6 +305,11 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         );
 
         buttonSalvar.setText("Salvar");
+        buttonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonSalvarActionPerformed(evt);
+            }
+        });
 
         buttonCancelar.setText("Cancelar");
 
@@ -474,6 +479,57 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
     //NESCESSÁRIO IMPLEMENTAR PESQUISA/ CONSULTA DE PRODUTOS E LISTAGEM
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 
+    private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
+        String categoria = "";
+        Timestamp hoje = new Timestamp(System.currentTimeMillis());//armazena a data e hora do sistema
+        Produto pro = new Produto();
+        Sistema sis = new Sistema();
+        
+        //pega os dados dos campos e os adiciona ao objeto pro da classe produto
+        pro.setDescricao(fieldDescricao.getText());
+        pro.setNome(fieldNome.getText());
+        pro.setPreco_compra(Double.parseDouble(fieldPrecoCompra.getText()));
+        pro.setPreco_venda(Double.parseDouble(fieldPrecoVenda.getText()));
+        pro.setQuantidade(Integer.parseInt(fieldQntd.getText()));
+        
+        pro.setTime(hoje);
+        sis.inserir(pro);
+        //----------------------------------------------------------------------
+
+        //código para pegar a categoria
+        if (cat1.isSelected()) {
+            categoria += " - " + cat1.getText();
+        }
+        if (cat2.isSelected()) {
+            categoria += " - " + cat1.getText();
+        }
+        if (cat3.isSelected()) {
+            categoria += " - " + cat1.getText();
+        }
+        if (cat4.isSelected()) {
+            categoria += " - " + cat1.getText();
+        }
+        if (cat5.isSelected()) {
+            categoria += " - " + cat1.getText();
+        }
+        /* já que é possível ter mais de uma categoria o programa tem q correr todas as categorias existentes
+         * e concatenar as Strings, se o usuário selecionar a categoria 1, 2 e 3 a String categoria ficará "1 - 2 - 3"
+         */
+        if (!categoria.isEmpty())//se a String NÃO estiver fazia quer dizer o usuário escolheu algo
+        {
+            pro.setCategoria(categoria);//add a categoria ao objeto
+            sis.categoriaProduto(pro); //chama a classe que adiciona a categoria ao banco
+        }
+
+        //limpa os campos
+        fieldNome.setText("");
+        fieldDescricao.setText("");
+        fieldPrecoCompra.setText("");
+        fieldPrecoVenda.setText("");
+        fieldQntd.setText("");
+        //---------------------------
+    }//GEN-LAST:event_buttonSalvarActionPerformed
+
     static public void atualizaTabela() throws ClassNotFoundException, SQLException {
         //Este método atualiza a tabela com os dados novos
         List<Produto> lista = sis.listar();//o método listar busca todos os produtos no banco e retorna um array cheio deles
@@ -543,40 +599,10 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
     private javax.swing.JButton buttonPesquisar;
     private javax.swing.JButton buttonSalvar;
     private javax.swing.JCheckBox cat1;
-    private javax.swing.JCheckBox cat10;
-    private javax.swing.JCheckBox cat11;
-    private javax.swing.JCheckBox cat12;
-    private javax.swing.JCheckBox cat13;
-    private javax.swing.JCheckBox cat14;
-    private javax.swing.JCheckBox cat15;
-    private javax.swing.JCheckBox cat16;
-    private javax.swing.JCheckBox cat17;
-    private javax.swing.JCheckBox cat18;
-    private javax.swing.JCheckBox cat19;
     private javax.swing.JCheckBox cat2;
-    private javax.swing.JCheckBox cat20;
-    private javax.swing.JCheckBox cat21;
-    private javax.swing.JCheckBox cat22;
-    private javax.swing.JCheckBox cat23;
-    private javax.swing.JCheckBox cat24;
-    private javax.swing.JCheckBox cat25;
-    private javax.swing.JCheckBox cat26;
-    private javax.swing.JCheckBox cat27;
-    private javax.swing.JCheckBox cat28;
-    private javax.swing.JCheckBox cat29;
     private javax.swing.JCheckBox cat3;
-    private javax.swing.JCheckBox cat30;
-    private javax.swing.JCheckBox cat31;
-    private javax.swing.JCheckBox cat32;
-    private javax.swing.JCheckBox cat33;
-    private javax.swing.JCheckBox cat34;
-    private javax.swing.JCheckBox cat35;
     private javax.swing.JCheckBox cat4;
     private javax.swing.JCheckBox cat5;
-    private javax.swing.JCheckBox cat6;
-    private javax.swing.JCheckBox cat7;
-    private javax.swing.JCheckBox cat8;
-    private javax.swing.JCheckBox cat9;
     private javax.swing.JTextArea fieldDescricao;
     private javax.swing.JTextField fieldNome;
     private javax.swing.JTextField fieldPrecoCompra;
@@ -597,12 +623,6 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
     private javax.swing.JLabel lblQntd;
     private javax.swing.JLabel lblVenda;
     private javax.swing.JPanel panelCadastro;
-    private javax.swing.JPanel panelCategoria;
-    private javax.swing.JPanel panelCategoria1;
-    private javax.swing.JPanel panelCategoria2;
-    private javax.swing.JPanel panelCategoria3;
-    private javax.swing.JPanel panelCategoria4;
-    private javax.swing.JPanel panelCategoria5;
     private javax.swing.JPanel panelCategoria6;
     private javax.swing.JPanel panelValores;
     private javax.swing.JPanel panelVisualizar;
