@@ -5,17 +5,27 @@
  */
 package com.devolution.gerenciamento_produtos.interfaces;
 
+import com.devolution.gerenciamento_produtos.Produto;
+
 /**
  *
  * @author pedro.hgsilva
  */
 public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form Tela_CadastroProdutos
-     */
+       Produto produto = new Produto();
+
     public Tela_EditarProdutos() {
         initComponents();
+        System.out.println(produto.getNome());
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
     }
 
     /**

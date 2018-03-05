@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author luana.mpereira5
  */
-public class Cadastrar_produtos extends javax.swing.JFrame {
+public class Cadastrar_produtos_test extends javax.swing.JFrame {
 
     static Sistema sis = new Sistema();
     Tela_EditarProdutos tela = new Tela_EditarProdutos();
@@ -27,13 +27,13 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
     /**
      * Creates new form Cadastrar_produtos
      */
-    public Cadastrar_produtos() {
+    public Cadastrar_produtos_test() {
         initComponents();
 
         //faz com que a coluna do ID não seja mostrada ao usuário
-        tabela.getColumnModel().getColumn(0).setMinWidth(0);
-        tabela.getColumnModel().getColumn(0).setMaxWidth(0);
-        tabela.getColumnModel().getColumn(0).setWidth(0);
+//        tabela.getColumnModel().getColumn(0).setMinWidth(0);
+//        tabela.getColumnModel().getColumn(0).setMaxWidth(0);
+//        tabela.getColumnModel().getColumn(0).setWidth(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -425,8 +425,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                     sistema.excluir(id);
 
                     //Atualiza a lista após a "exclusão"
-//                    this.atualizaTabela();
-
+                    //this.atualizaTabela();
                 } catch (Exception e) {
                     //Se ocorrer algum erro técnico, mostra-o no console,
                     //mas esconde-o do usuário
@@ -442,13 +441,13 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
         //ARRUMAR PARA CHAMAR PANEL
-
         try {
             //Obtém a linha selecionada da tabela de resultados
             final int row = tabela.getSelectedRow();
 
             //Obtém o valor do ID da coluna "ID" da tabela de resultados
             Integer id = (Integer) tabela.getValueAt(row, 0);
+
             //Com o ID da coluna, chama o serviço de produto para
             //obter o produto com dados atualizados do mock
             Produto produto = Sistema.obter(id);
@@ -464,7 +463,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
             tela.setTitle(produto.getNome());
             this.getParent().add(tela);
             tela.toFront();
-
+            System.out.println("chedou no fim?");
         } catch (Exception e) {
             //Se ocorrer algum erro técnico, mostra-o no console,
             //mas esconde-o do usuário
@@ -475,10 +474,12 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                     + "exibir os detalhes deste produto.",
                     "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
         //NESCESSÁRIO IMPLEMENTAR PESQUISA/ CONSULTA DE PRODUTOS E LISTAGEM
+
         //Solução provisória ... por enquanto ele vai chamar o método atualizar
         try {
             Cadastrar_produtos.atualizaTabela();
@@ -504,8 +505,10 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         try {
             sis.inserir(pro);
             //----------------------------------------------------------------------
+
         } catch (SQLException ex) {
-            Logger.getLogger(Cadastrar_produtos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Cadastrar_produtos.class
+                    .getName()).log(Level.SEVERE, null, ex);
         }
 
         //código para pegar a categoria
@@ -530,7 +533,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         if (!categoria.isEmpty())//se a String NÃO estiver fazia quer dizer o usuário escolheu algo
         {
             pro.setCategoria(categoria);//add a categoria ao objeto
-            sis.inserirCatProd(pro.getId_produto(), pro.getId_categoria()); //chama a classe que adiciona a categoria ao banco
+          //  sis.categoriaProduto(pro); //chama a classe que adiciona a categoria ao banco
         }
 
         //limpa os campos
@@ -577,16 +580,24 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastrar_produtos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastrar_produtos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastrar_produtos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Cadastrar_produtos.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -596,10 +607,14 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                 new Cadastrar_produtos().setVisible(true);
                 try {
                     atualizaTabela();//chamar o método "atualiza tabela" aqui faz com que o programa já se inicie com a tabela criada
+
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Cadastrar_produtos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Cadastrar_produtos.class
+                            .getName()).log(Level.SEVERE, null, ex);
+
                 } catch (SQLException ex) {
-                    Logger.getLogger(Cadastrar_produtos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(Cadastrar_produtos.class
+                            .getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
