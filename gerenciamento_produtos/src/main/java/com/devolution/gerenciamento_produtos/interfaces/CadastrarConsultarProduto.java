@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author luana.mpereira5
  */
-public class Cadastrar_produtos extends javax.swing.JFrame {
+public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
     static Sistema sis = new Sistema();
     Tela_EditarProdutos tela = new Tela_EditarProdutos();
@@ -27,13 +27,13 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
     /**
      * Creates new form Cadastrar_produtos
      */
-    public Cadastrar_produtos() {
+    public CadastrarConsultarProduto() {
         initComponents();
 
         //faz com que a coluna do ID não seja mostrada ao usuário
-        tabela.getColumnModel().getColumn(0).setMinWidth(0);
-        tabela.getColumnModel().getColumn(0).setMaxWidth(0);
-        tabela.getColumnModel().getColumn(0).setWidth(0);
+        tableConsultaProduto.getColumnModel().getColumn(0).setMinWidth(0);
+        tableConsultaProduto.getColumnModel().getColumn(0).setMaxWidth(0);
+        tableConsultaProduto.getColumnModel().getColumn(0).setWidth(0);
     }
 
     @SuppressWarnings("unchecked")
@@ -42,15 +42,15 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
         tabbedMain = new javax.swing.JTabbedPane();
-        panelVisualizar = new javax.swing.JPanel();
+        panelConsultar = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tabela = new javax.swing.JTable();
+        tableConsultaProduto = new javax.swing.JTable();
         buttonExcluir = new javax.swing.JButton();
         buttonEditar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        panelPesquisar = new javax.swing.JPanel();
         buttonPesquisar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        fieldPesquisar = new javax.swing.JTextField();
+        lblLogo = new javax.swing.JLabel();
         panelCadastro = new javax.swing.JPanel();
         lblNome = new javax.swing.JLabel();
         fieldNome = new javax.swing.JTextField();
@@ -78,7 +78,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        tabela.setModel(new javax.swing.table.DefaultTableModel(
+        tableConsultaProduto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null}
             },
@@ -94,15 +94,15 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tabela.getTableHeader().setReorderingAllowed(false);
-        jScrollPane2.setViewportView(tabela);
-        if (tabela.getColumnModel().getColumnCount() > 0) {
-            tabela.getColumnModel().getColumn(0).setResizable(false);
-            tabela.getColumnModel().getColumn(1).setResizable(false);
-            tabela.getColumnModel().getColumn(2).setResizable(false);
-            tabela.getColumnModel().getColumn(3).setResizable(false);
-            tabela.getColumnModel().getColumn(4).setResizable(false);
-            tabela.getColumnModel().getColumn(5).setResizable(false);
+        tableConsultaProduto.getTableHeader().setReorderingAllowed(false);
+        jScrollPane2.setViewportView(tableConsultaProduto);
+        if (tableConsultaProduto.getColumnModel().getColumnCount() > 0) {
+            tableConsultaProduto.getColumnModel().getColumn(0).setResizable(false);
+            tableConsultaProduto.getColumnModel().getColumn(1).setResizable(false);
+            tableConsultaProduto.getColumnModel().getColumn(2).setResizable(false);
+            tableConsultaProduto.getColumnModel().getColumn(3).setResizable(false);
+            tableConsultaProduto.getColumnModel().getColumn(4).setResizable(false);
+            tableConsultaProduto.getColumnModel().getColumn(5).setResizable(false);
         }
 
         buttonExcluir.setText("Excluir");
@@ -119,7 +119,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar Produto"));
+        panelPesquisar.setBorder(javax.swing.BorderFactory.createTitledBorder("Pesquisar Produto"));
 
         buttonPesquisar.setText("Pesquisar");
         buttonPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -128,70 +128,70 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelPesquisarLayout = new javax.swing.GroupLayout(panelPesquisar);
+        panelPesquisar.setLayout(panelPesquisarLayout);
+        panelPesquisarLayout.setHorizontalGroup(
+            panelPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelPesquisarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(fieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(buttonPesquisar)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        panelPesquisarLayout.setVerticalGroup(
+            panelPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPesquisarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelPesquisarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonPesquisar)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jLabel1.setText("Logo");
+        lblLogo.setText("Logo");
 
-        javax.swing.GroupLayout panelVisualizarLayout = new javax.swing.GroupLayout(panelVisualizar);
-        panelVisualizar.setLayout(panelVisualizarLayout);
-        panelVisualizarLayout.setHorizontalGroup(
-            panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelVisualizarLayout.createSequentialGroup()
-                .addGroup(panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisualizarLayout.createSequentialGroup()
+        javax.swing.GroupLayout panelConsultarLayout = new javax.swing.GroupLayout(panelConsultar);
+        panelConsultar.setLayout(panelConsultarLayout);
+        panelConsultarLayout.setHorizontalGroup(
+            panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelConsultarLayout.createSequentialGroup()
+                .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisualizarLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buttonEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonExcluir))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisualizarLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(jLabel1)
+                        .addComponent(lblLogo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(panelPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
-        panelVisualizarLayout.setVerticalGroup(
-            panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelVisualizarLayout.createSequentialGroup()
-                .addGroup(panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelVisualizarLayout.createSequentialGroup()
+        panelConsultarLayout.setVerticalGroup(
+            panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
+                .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelConsultarLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelVisualizarLayout.createSequentialGroup()
+                        .addComponent(panelPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelConsultarLayout.createSequentialGroup()
                         .addGap(34, 34, 34)
-                        .addComponent(jLabel1)))
+                        .addComponent(lblLogo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelVisualizarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonEditar)
                     .addComponent(buttonExcluir))
                 .addContainerGap())
         );
 
-        tabbedMain.addTab("Gerenciar/ Visualizar Produtos", panelVisualizar);
+        tabbedMain.addTab("Consultar Produtos", panelConsultar);
 
         lblNome.setText("Nome");
 
@@ -372,7 +372,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
-        tabbedMain.addTab("Cadastrar Produtos", panelCadastro);
+        tabbedMain.addTab("Cadastrar Produto", panelCadastro);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -391,6 +391,8 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        tabbedMain.getAccessibleContext().setAccessibleName("Consultar Produtos");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -399,14 +401,14 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
 
 //Verifica se há itens selecionados para exclusão.
         //Caso negativo, ignora o comando
-        if (tabela.getSelectedRow() >= 0) {
+        if (tableConsultaProduto.getSelectedRow() >= 0) {
 
             //Obtém a linha do item selecionado
-            final int row = tabela.getSelectedRow();
+            final int row = tableConsultaProduto.getSelectedRow();
 
             //Obtém o nome do produto da linha indicada para exibição
             //de mensagem de confirmação de exclusão utilizando seu número
-            String produto = (String) tabela.getValueAt(row, 2);
+            String produto = (String) tableConsultaProduto.getValueAt(row, 2);
 
             //Mostra o diálogo de confirmação de exclusão
             int resposta = JOptionPane.showConfirmDialog(rootPane,
@@ -417,7 +419,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
             if (resposta == JOptionPane.YES_OPTION) {
                 try {
                     //Obtém o ID do produto
-                    Integer id = (Integer) tabela.getValueAt(row, 0);
+                    Integer id = (Integer) tableConsultaProduto.getValueAt(row, 0);
 
                     //Instânciando a Classe Sistema
                     //Chamando o método de excluir produto;
@@ -445,10 +447,10 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
 
         try {
             //Obtém a linha selecionada da tabela de resultados
-            final int row = tabela.getSelectedRow();
+            final int row = tableConsultaProduto.getSelectedRow();
 
             //Obtém o valor do ID da coluna "ID" da tabela de resultados
-            Integer id = (Integer) tabela.getValueAt(row, 0);
+            Integer id = (Integer) tableConsultaProduto.getValueAt(row, 0);
             //Com o ID da coluna, chama o serviço de produto para
             //obter o produto com dados atualizados do mock
             Produto produto = Sistema.obter(id);
@@ -481,9 +483,9 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         //NESCESSÁRIO IMPLEMENTAR PESQUISA/ CONSULTA DE PRODUTOS E LISTAGEM
         //Solução provisória ... por enquanto ele vai chamar o método atualizar
         try {
-            Cadastrar_produtos.atualizaTabela();
+            CadastrarConsultarProduto.atualizaTabela();
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Cadastrar_produtos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 
@@ -505,7 +507,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
             sis.inserir(pro);
             //----------------------------------------------------------------------
         } catch (SQLException ex) {
-            Logger.getLogger(Cadastrar_produtos.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //código para pegar a categoria
@@ -546,7 +548,7 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
         //Este método atualiza a tabela com os dados novos
         List<Produto> lista = sis.listar();//o método listar busca todos os produtos no banco e retorna um array cheio deles
 
-        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+        DefaultTableModel model = (DefaultTableModel) tableConsultaProduto.getModel();
 
         model.setRowCount(0);//zera a tabela para colocar os dados novos
 
@@ -580,26 +582,29 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Cadastrar_produtos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastrar_produtos().setVisible(true);
+                new CadastrarConsultarProduto().setVisible(true);
                 try {
                     atualizaTabela();//chamar o método "atualiza tabela" aqui faz com que o programa já se inicie com a tabela criada
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(Cadastrar_produtos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Cadastrar_produtos.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
@@ -618,28 +623,28 @@ public class Cadastrar_produtos extends javax.swing.JFrame {
     private javax.swing.JCheckBox cat5;
     private javax.swing.JTextArea fieldDescricao;
     private javax.swing.JTextField fieldNome;
+    private javax.swing.JTextField fieldPesquisar;
     private javax.swing.JTextField fieldPrecoCompra;
     private javax.swing.JTextField fieldPrecoVenda;
     private javax.swing.JTextField fieldQntd;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblCompra;
     private javax.swing.JLabel lblDescricao;
+    private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblQntd;
     private javax.swing.JLabel lblVenda;
     private javax.swing.JPanel panelCadastro;
     private javax.swing.JPanel panelCategoria6;
+    private javax.swing.JPanel panelConsultar;
+    private javax.swing.JPanel panelPesquisar;
     private javax.swing.JPanel panelValores;
-    private javax.swing.JPanel panelVisualizar;
     private javax.swing.JTabbedPane tabbedMain;
-    static javax.swing.JTable tabela;
+    static javax.swing.JTable tableConsultaProduto;
     // End of variables declaration//GEN-END:variables
 }

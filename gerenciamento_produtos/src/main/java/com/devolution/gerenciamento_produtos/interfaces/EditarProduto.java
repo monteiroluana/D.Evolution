@@ -11,11 +11,11 @@ import com.devolution.gerenciamento_produtos.Produto;
  *
  * @author pedro.hgsilva
  */
-public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
+public class EditarProduto extends javax.swing.JInternalFrame {
 
        Produto produto = new Produto();
 
-    public Tela_EditarProdutos() {
+    public EditarProduto() {
         initComponents();
         System.out.println(produto.getNome());
     }
@@ -57,11 +57,11 @@ public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
         lblVenda = new javax.swing.JLabel();
         fieldPrecoVenda = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
-        jLabel6 = new javax.swing.JLabel();
+        lblReal = new javax.swing.JLabel();
         buttonSalvar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
 
-        setTitle("Cadastrar Produtos");
+        setTitle("Editar Produto");
         setToolTipText("");
 
         lblNome.setText("Nome");
@@ -122,7 +122,7 @@ public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
 
         lblVenda.setText("Venda");
 
-        jLabel6.setText("R$");
+        lblReal.setText("R$");
 
         javax.swing.GroupLayout panelValoresLayout = new javax.swing.GroupLayout(panelValores);
         panelValores.setLayout(panelValoresLayout);
@@ -139,7 +139,7 @@ public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
                 .addGroup(panelValoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelValoresLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
+                        .addComponent(lblReal)
                         .addGap(37, 37, 37))
                     .addGroup(panelValoresLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
@@ -171,7 +171,7 @@ public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
                     .addGroup(panelValoresLayout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblReal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(25, 25, 25))
@@ -258,7 +258,6 @@ public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fieldPrecoCompra;
     private javax.swing.JTextField fieldPrecoVenda;
     private javax.swing.JTextField fieldQntd;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -266,6 +265,7 @@ public class Tela_EditarProdutos extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblDescricao;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblQntd;
+    private javax.swing.JLabel lblReal;
     private javax.swing.JLabel lblVenda;
     private javax.swing.JPanel panelCategoria;
     private javax.swing.JPanel panelValores;
