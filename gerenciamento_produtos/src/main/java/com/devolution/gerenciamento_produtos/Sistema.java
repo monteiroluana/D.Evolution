@@ -112,8 +112,9 @@ public class Sistema {
             stmt.setDouble(3, produto.getPreco_compra());
             stmt.setDouble(4, produto.getPreco_venda());
             stmt.setInt(5, produto.getQuantidade());
+            stmt.setInt(6, produto.getId_produto());
 
-            stmt.execute();
+            stmt.executeUpdate();
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
@@ -123,7 +124,7 @@ public class Sistema {
         }
     }
 
-    public void excluir(int id) throws ClassNotFoundException, SQLException {
+    public void excluir(Produto produto) throws ClassNotFoundException, SQLException {
         String sql = "Delete from PRODUTO where id = ?";
         
         Connection conn = null;
@@ -131,6 +132,7 @@ public class Sistema {
         try {
             conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, produto.getId_produto());
             stmt.execute();
 
         } catch (SQLException e) {
