@@ -45,29 +45,25 @@ public class Sistema {
         return lista;
     }
 
-    public void categoriaProduto(Produto produto) {
+    public void inserirCatProd(int idProd, int idCat) {
 
         try {
-            //essa classe ainda não funciona completamente            
             Connection conn = Conexao.obterConexao();
-            PreparedStatement pegaID = conn.prepareStatement("SELECT * FROM PRODUTOBD.PRODUTO WHERE NOME = (?) AND DESCRICAO = (?)");
-            pegaID.setString(1, produto.getNome());
-            pegaID.setString(2, produto.getDescricao());
-            ResultSet resultados = pegaID.executeQuery();
-            int id = resultados.getInt("id");//o erro acontece nessa linha. Aparentemente a query retorna vazia mesmo colocando dados certos
-            produto.setId_produto(id);
-            //código que pega o id do produto recém adicionado ao banco
-            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTO_CATEGORIA (PRODUTOBD.PRODUTO.ID,"
-                    + " ID_CATEGORIA) VALUES (?, ?)");
-            stmt.setInt(1, produto.getId_produto());
-            stmt.setInt(2, produto.getId_categoria());
+            PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTO_CATEGORIA (id_produto, id_categoria)"
+                    + "Values(?, ?)");
+            stmt.setInt(1, idProd);
+            stmt.setInt(2, idCat);
             stmt.execute();
+            
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println(ex.getMessage());
         }
     }
-
+    
+    
     public void inserir(Produto produto) throws SQLException {
+        
+        int chaveGerada = 0;
 
         String sql = "INSERT INTO PRODUTOBD.PRODUTO (nome, descricao, preco_compra, preco_venda,"
                 + " quantidade, dt_cadastro) VALUES (?, ?, ?, ?, ?, ?)";
@@ -76,7 +72,7 @@ public class Sistema {
 
         try {
             conn = Conexao.obterConexao();
-            PreparedStatement stmt = conn.prepareStatement(sql);
+            PreparedStatement stmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getDescricao());
@@ -86,6 +82,19 @@ public class Sistema {
             stmt.setTimestamp(6, produto.getTime());
 
             stmt.execute();
+            
+            //Recuperando a chave gerada
+            ResultSet rs = stmt.getGeneratedKeys();
+            
+            if(rs.next()){
+            chaveGerada = rs.getInt(1);
+            }
+            
+            System.out.println("Chave gerada: " + chaveGerada);
+            
+            //método para inserir na tabela produto_Categoria
+            inserirCatProd(chaveGerada, produto.getId_categoria());                                                
+            
 
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println(ex.getMessage());
@@ -99,7 +108,7 @@ public class Sistema {
 
         String sql = "UPDATE produto SET  nome = ?, descricao = ?, preco_compra = ?, preco_venda = ?,"
                 + " quantidade = ?"
-                + " WHERE id = ? ";
+                + " WHERE id = ?";
         
         Connection conn = null;
 

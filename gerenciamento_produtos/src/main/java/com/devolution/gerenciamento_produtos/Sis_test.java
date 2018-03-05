@@ -17,20 +17,18 @@ public class Sis_test {
         Sistema s = new Sistema();
         Produto p1 = new Produto();
         
-        p1.setNome("Produto 1");
-        p1.setDescricao("Para maiores");
-        p1.setCategoria("Cat um");
-        p1.setId_produto(2);
+        p1.setNome("Produto Novo");
+        p1.setDescricao("Para ado");
+        p1.setId_categoria(3);
         p1.setPreco_compra(50.0);
         p1.setPreco_venda(75.0);
         p1.setQuantidade(90);
         
-//        s.inserir(p1);
+        s.inserir(p1);
         
-        p1.setNome("produto extra");
-        p1.setDescricao("produto alterado");
         
-        s.editar(p1);
+        
+      
         
         
         
