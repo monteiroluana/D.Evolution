@@ -90,10 +90,10 @@ public class Sistema {
             chaveGerada = rs.getInt(1);
             }
             
-            System.out.println("Chave gerada: " + chaveGerada);
+            produto.setId_categoria(chaveGerada);
             
             //método para inserir na tabela produto_Categoria
-            inserirCatProd(chaveGerada, produto.getId_categoria());                                                
+            inserirCatProd(produto.getId_produto(), produto.getId_categoria());                                                
             
 
         } catch (ClassNotFoundException | SQLException ex) {
