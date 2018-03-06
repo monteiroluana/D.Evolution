@@ -21,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
+    public int controle = 0;
     static Sistema sis = new Sistema();
-    EditarProduto tela = new EditarProduto();
 
     /**
      * Creates new form Cadastrar_produtos
@@ -75,6 +75,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         buttonSalvar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
+        buttonAlterar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -317,6 +318,19 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         });
 
         buttonCancelar.setText("Cancelar");
+        buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCancelarActionPerformed(evt);
+            }
+        });
+
+        buttonAlterar.setText("Alterar");
+        buttonAlterar.setEnabled(false);
+        buttonAlterar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonAlterarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelCadastroLayout = new javax.swing.GroupLayout(panelCadastro);
         panelCadastro.setLayout(panelCadastroLayout);
@@ -342,9 +356,10 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                         .addComponent(panelCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(111, 111, 111))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(buttonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(buttonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                            .addComponent(buttonAlterar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())))
         );
         panelCadastroLayout.setVerticalGroup(
@@ -356,7 +371,9 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                         .addComponent(panelCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
                         .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buttonAlterar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(buttonCancelar)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
@@ -398,6 +415,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         tab.getAccessibleContext().setAccessibleName("Consultar Produtos");
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
@@ -447,10 +465,13 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
+
         try {
             //Obtém a linha selecionada da tabela de resultados
             final int row = tableConsultaProduto.getSelectedRow();
             tab.setSelectedIndex(1);
+            buttonAlterar.setEnabled(true);
+            buttonSalvar.setEnabled(false);
             //Obtém o valor do ID da coluna "ID" da tabela de resultados
             Integer id = (Integer) tableConsultaProduto.getValueAt(row, 0);
             //Com o ID da coluna, chama o serviço de produto para
@@ -462,48 +483,79 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
             fieldQtd.setText(String.valueOf(produto.getQuantidade()));
             fieldPrecoCompra.setText(String.valueOf(produto.getQuantidade()));
             fieldPrecoVenda.setText(String.valueOf(produto.getQuantidade()));
-            if(produto.getCategoria()== 1){
-                cat1.setSelected(true);
-            }if(produto.getCategoria()== 2){
-                cat2.setSelected(true);
-            }if(produto.getCategoria()== 3){
-                cat3.setSelected(true);
-            }if(produto.getCategoria()== 4){
-                cat4.setSelected(true);
-            }if(produto.getCategoria()== 5){
-                cat5.setSelected(true);
-            }if(produto.getCategoria() == 0){
+            if (produto.getCategoria() == 1) {
                 cat1.setSelected(true);
             }
-            
+            if (produto.getCategoria() == 2) {
+                cat2.setSelected(true);
+            }
+            if (produto.getCategoria() == 3) {
+                cat3.setSelected(true);
+            }
+            if (produto.getCategoria() == 4) {
+                cat4.setSelected(true);
+            }
+            if (produto.getCategoria() == 5) {
+                cat5.setSelected(true);
+            }
+            if (produto.getCategoria() == 0) {
+                cat1.setSelected(true);
+            }
+
         } catch (Exception e) {
             //Se ocorrer algum erro técnico, mostra-o no console,
             //mas esconde-o do usuário
             e.printStackTrace();
-            e.getMessage();
 
             //Exibe uma mensagem de erro genérica ao usuário
             JOptionPane.showMessageDialog(rootPane, "Não é possível "
                     + "exibir os detalhes deste produto.",
                     "Erro ao abrir detalhe", JOptionPane.ERROR_MESSAGE);
         }
+
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
-        //NECESSÁRIO IMPLEMENTAR PESQUISA/ CONSULTA DE PRODUTOS E LISTAGEM
-        //Solução provisória ... por enquanto ele vai chamar o método atualizar
         try {
-            sis.listar();
-        } catch (ClassNotFoundException | SQLException ex) {
+            JOptionPane frame = new JOptionPane();
+            //verifica se o campo pesquisa está vazio, se estiver vai imprimir todos os produtos --------
+            if (fieldPesquisar.getText().equalsIgnoreCase("") || fieldPesquisar.getText().isEmpty()) {
+                try {
+                   atualizaTabela();
+                    return;
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }//-----------------------------------------
+            
+            List<Produto> lista = sis.buscarNome(fieldPesquisar.getText());
+            DefaultTableModel model = (DefaultTableModel) tableConsultaProduto.getModel();
+            model.setRowCount(0);
+            if (lista.size() == 0) {
+                JOptionPane.showMessageDialog(frame, "***Produto não encontrado***");
+            }
+            for (int i = 0; i < lista.size(); i++) {
+                Produto pro = lista.get(i);
+                if (pro != null) {
+                    Object[] row = new Object[7];
+                    row[0] = pro.getIdProduto();
+                    row[1] = pro.getNome();
+                    row[2] = pro.getDescricao();
+                    row[3] = pro.getPrecoCompra();
+                    row[4] = pro.getPrecoVenda();
+                    row[5] = pro.getQuantidade();
+                    row[6] = pro.getTime();
+                    model.addRow(row);
+                }
+            }
+        } catch (Exception ex) {
             Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_buttonPesquisarActionPerformed
 
     private void buttonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSalvarActionPerformed
-        String categoria = "";
         Timestamp hoje = new Timestamp(System.currentTimeMillis());//armazena a data e hora do sistema
         Produto pro = new Produto();
-
         //pega os dados dos campos e os adiciona ao objeto pro da classe produto
         pro.setDescricao(fieldDescricao.getText());
         pro.setNome(fieldNome.getText());
@@ -536,9 +588,16 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
             /* já que é possível ter mais de uma categoria o programa tem q correr todas as categorias existentes
             * e concatenar as Strings, se o usuário selecionar a categoria 1, 2 e 3 a String categoria ficará "1 - 2 - 3"
-            */
-            System.out.println("id produto "+pro.getIdProduto()+"---- id categoria");
+             */
+            System.out.println("id produto " + pro.getIdProduto() + "---- id categoria");
             sis.inserirCatProd(pro.getIdProduto(), pro.getIdCategoria()); //chama a classe que adiciona a categoria ao banco
+            //Volta pra aba anterior e atualiza a tabela, colocando o novo item lá
+            try {
+                atualizaTabela();
+                tab.setSelectedIndex(0);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -555,8 +614,77 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         cat3.setSelected(false);
         cat4.setSelected(false);
         cat5.setSelected(false);
-        
+
     }//GEN-LAST:event_buttonSalvarActionPerformed
+
+    private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
+        tab.setSelectedIndex(0);
+        //limpa os campos
+        fieldNome.setText("");
+        fieldDescricao.setText("");
+        fieldPrecoCompra.setText("");
+        fieldPrecoVenda.setText("");
+        fieldQtd.setText("");
+        cat1.setSelected(false);
+        cat2.setSelected(false);
+        cat3.setSelected(false);
+        cat4.setSelected(false);
+        cat5.setSelected(false);
+    }//GEN-LAST:event_buttonCancelarActionPerformed
+
+    private void buttonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAlterarActionPerformed
+        Produto pro = new Produto();
+        //pega os dados dos campos e os adiciona ao objeto pro da classe produto
+        pro.setDescricao(fieldDescricao.getText());
+        pro.setNome(fieldNome.getText());
+        pro.setPrecoCompra(Double.parseDouble(fieldPrecoCompra.getText()));
+        pro.setPrecoVenda(Double.parseDouble(fieldPrecoVenda.getText()));
+        pro.setQuantidade(Integer.parseInt(fieldQtd.getText()));
+        int row = tableConsultaProduto.getSelectedRow();
+        Integer id = (Integer) tableConsultaProduto.getValueAt(row, 0);
+        pro.setIdProduto(id);
+        try {
+            sis.editar(pro);
+            //código para pegar a categoria
+             if (cat1.isSelected()) {
+                //recolhe o texto do jcheckbox e converte para int
+                pro.setCategoria(Integer.parseInt(cat1.getText()));
+            }if (cat2.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat2.getText()));
+            }if (cat3.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat3.getText()));
+            }if (cat4.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat4.getText()));
+            }if (cat5.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat5.getText()));
+            }
+            sis.inserirCatProd(pro.getIdProduto(), pro.getIdCategoria()); 
+            //chama a classe que adiciona a categoria ao banco
+            //Volta pra aba anterior e atualiza a tabela, colocando o novo item lá
+            try {
+                atualizaTabela();
+                tab.setSelectedIndex(0);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //limpa os campos
+        fieldNome.setText("");
+        fieldDescricao.setText("");
+        fieldPrecoCompra.setText("");
+        fieldPrecoVenda.setText("");
+        fieldQtd.setText("");
+        cat1.setSelected(false);
+        cat2.setSelected(false);
+        cat3.setSelected(false);
+        cat4.setSelected(false);
+        cat5.setSelected(false);
+    }//GEN-LAST:event_buttonAlterarActionPerformed
 
     static public void atualizaTabela() throws ClassNotFoundException, SQLException {
         //Este método atualiza a tabela com os dados novos
@@ -614,6 +742,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CadastrarConsultarProduto().setVisible(true);
+
                 try {
                     atualizaTabela();//chamar o método "atualiza tabela" aqui faz com que o programa já se inicie com a tabela criada
                 } catch (ClassNotFoundException ex) {
@@ -626,6 +755,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton buttonAlterar;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonEditar;
     private javax.swing.JButton buttonExcluir;

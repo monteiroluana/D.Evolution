@@ -9,10 +9,6 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author rodrigo.nhsilva
- */
 public class Sistema {
 
     static CadastrarConsultarProduto cad = new CadastrarConsultarProduto();
@@ -109,9 +105,7 @@ public class Sistema {
         String sql = "UPDATE produto SET  nome = ?, descricao = ?, preco_compra = ?, preco_venda = ?,"
                 + " quantidade = ?"
                 + " WHERE id = ?";
-
         Connection conn = null;
-
         try {
             conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -187,6 +181,45 @@ public class Sistema {
         } catch (SQLException e) {
             System.err.println(e.getMessage());
 
+        }
+        return null;
+    }
+
+    public List<Produto> buscarNome(String name) throws SQLException, Exception {
+        List<Produto> lista = new ArrayList<Produto>();
+        String sql = "SELECT * FROM PRODUTOBD.PRODUTO WHERE nome = ?";
+        Connection conn = null;
+
+        try {
+            conn = Conexao.obterConexao();
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, name);
+
+            ResultSet resultados = stmt.executeQuery();
+            Produto pro = new Produto();
+
+            while (resultados.next()) {
+                int id = resultados.getInt("id");
+                String nome = resultados.getString("nome");
+                String descricao = resultados.getString("descricao");
+                double venda = resultados.getDouble("preco_venda");
+                double compra = resultados.getDouble("preco_compra");
+                int quantidadde = resultados.getInt("quantidade");
+                Timestamp data = resultados.getTimestamp("dt_cadastro");
+
+                pro.setIdProduto(id);
+                pro.setNome(nome);
+                pro.setDescricao(descricao);
+                pro.setPrecoCompra(compra);
+                pro.setPrecoVenda(venda);
+                pro.setQuantidade(quantidadde);
+                pro.setTime(data);
+                lista.add(pro);
+            }
+
+            return lista;
+        } catch (SQLException e) {
+            System.err.println(e.getMessage());
         }
         return null;
     }
