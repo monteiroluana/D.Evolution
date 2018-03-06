@@ -565,32 +565,33 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
         pro.setTime(hoje);
         try {
-            sis.inserir(pro);
+            
 
             //código para pegar a categoria
             if (cat1.isSelected()) {
 
                 //recolhe o texto do jcheckbox e converte para int
-                pro.setCategoria(Integer.parseInt(cat1.getText()));
+                pro.setIdCategoria(Integer.parseInt(cat1.getText()));
             }
-            if (cat2.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat2.getText()));
+            else if (cat2.isSelected()) {
+                pro.setIdCategoria(Integer.parseInt(cat2.getText()));
             }
-            if (cat3.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat3.getText()));
+            else if (cat3.isSelected()) {
+                pro.setIdCategoria(Integer.parseInt(cat3.getText()));
             }
-            if (cat4.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat4.getText()));
+            else if (cat4.isSelected()) {
+                pro.setIdCategoria(Integer.parseInt(cat4.getText()));
             }
-            if (cat5.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat5.getText()));
+            else if (cat5.isSelected()) {
+                pro.setIdCategoria(Integer.parseInt(cat5.getText()));
             }
 
             /* já que é possível ter mais de uma categoria o programa tem q correr todas as categorias existentes
             * e concatenar as Strings, se o usuário selecionar a categoria 1, 2 e 3 a String categoria ficará "1 - 2 - 3"
              */
-            System.out.println("id produto " + pro.getIdProduto() + "---- id categoria");
-            sis.inserirCatProd(pro.getIdProduto(), pro.getIdCategoria()); //chama a classe que adiciona a categoria ao banco
+            System.out.println("id produto " + pro.getIdProduto() + "---- id categoria" + pro.getIdCategoria());
+            
+            sis.inserir(pro);
             //Volta pra aba anterior e atualiza a tabela, colocando o novo item lá
             try {
                 atualizaTabela();
@@ -644,22 +645,22 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         Integer id = (Integer) tableConsultaProduto.getValueAt(row, 0);
         pro.setIdProduto(id);
         try {
-            sis.editar(pro);
+            
             //código para pegar a categoria
              if (cat1.isSelected()) {
                 //recolhe o texto do jcheckbox e converte para int
-                pro.setCategoria(Integer.parseInt(cat1.getText()));
+                pro.setIdCategoria(Integer.parseInt(cat1.getText()));
             }if (cat2.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat2.getText()));
+                pro.setIdCategoria(Integer.parseInt(cat2.getText()));
             }if (cat3.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat3.getText()));
+                pro.setIdCategoria(Integer.parseInt(cat3.getText()));
             }if (cat4.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat4.getText()));
+                pro.setIdCategoria(Integer.parseInt(cat4.getText()));
             }if (cat5.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat5.getText()));
+                pro.setIdCategoria(Integer.parseInt(cat5.getText()));
             }
-            sis.inserirCatProd(pro.getIdProduto(), pro.getIdCategoria()); 
-            //chama a classe que adiciona a categoria ao banco
+            //Edita o produto no banco de dados (Todas as tabelas envolvidas)
+            sis.editar(pro);
             //Volta pra aba anterior e atualiza a tabela, colocando o novo item lá
             try {
                 atualizaTabela();

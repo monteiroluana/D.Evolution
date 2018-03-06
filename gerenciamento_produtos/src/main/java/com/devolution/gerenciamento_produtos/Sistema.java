@@ -87,7 +87,7 @@ public class Sistema {
             if (rs.next()) {
                 chaveGerada = rs.getInt(1);
             }
-            produto.setIdCategoria(chaveGerada);
+            produto.setIdProduto(chaveGerada);
 
             //método para inserir na tabela produto_Categoria
             inserirCatProd(chaveGerada, produto.getIdCategoria()); //alterado getIdProduto para chaveGerada
@@ -105,6 +105,10 @@ public class Sistema {
         String sql = "UPDATE produto SET  nome = ?, descricao = ?, preco_compra = ?, preco_venda = ?,"
                 + " quantidade = ?"
                 + " WHERE id = ?";
+        
+        String sql1 = "UPDATE produto_categoria SET id_categoria = ? "
+                + "WHERE id_produto = ?";
+        
         Connection conn = null;
         try {
             conn = Conexao.obterConexao();
@@ -118,11 +122,23 @@ public class Sistema {
             stmt.setInt(6, produto.getIdProduto());
 
             stmt.executeUpdate();
+            
+            stmt = conn.prepareStatement(sql1);
+            
+            stmt.setInt(1, produto.getIdCategoria());
+            stmt.setInt(2, produto.getIdProduto());
+            
+            System.out.println("Id do Prodtuo: " + produto.getIdProduto() + "id categoria: " + produto.getIdCategoria());
+            
+            stmt.executeUpdate();                        
+            
 
         } catch (SQLException e) {
             System.err.println(e.getMessage());
 
-        } finally {
+        }
+        
+        finally {
             conn.close();
         }
     }
