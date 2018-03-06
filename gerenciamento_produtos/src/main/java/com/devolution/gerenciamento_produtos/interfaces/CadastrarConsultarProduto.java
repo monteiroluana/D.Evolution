@@ -41,7 +41,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane2 = new javax.swing.JTabbedPane();
-        tabbedMain = new javax.swing.JTabbedPane();
+        tab = new javax.swing.JTabbedPane();
         panelConsultar = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tableConsultaProduto = new javax.swing.JTable();
@@ -55,8 +55,8 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         lblNome = new javax.swing.JLabel();
         fieldNome = new javax.swing.JTextField();
         lblQntd = new javax.swing.JLabel();
-        fieldQntd = new javax.swing.JTextField();
-        panelCategoria6 = new javax.swing.JPanel();
+        fieldQtd = new javax.swing.JTextField();
+        panelCategoria = new javax.swing.JPanel();
         cat1 = new javax.swing.JCheckBox();
         cat4 = new javax.swing.JCheckBox();
         cat2 = new javax.swing.JCheckBox();
@@ -97,12 +97,15 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         tableConsultaProduto.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tableConsultaProduto);
         if (tableConsultaProduto.getColumnModel().getColumnCount() > 0) {
-            tableConsultaProduto.getColumnModel().getColumn(0).setResizable(false);
+            tableConsultaProduto.getColumnModel().getColumn(0).setMinWidth(0);
+            tableConsultaProduto.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tableConsultaProduto.getColumnModel().getColumn(0).setMaxWidth(0);
             tableConsultaProduto.getColumnModel().getColumn(1).setResizable(false);
             tableConsultaProduto.getColumnModel().getColumn(2).setResizable(false);
             tableConsultaProduto.getColumnModel().getColumn(3).setResizable(false);
             tableConsultaProduto.getColumnModel().getColumn(4).setResizable(false);
             tableConsultaProduto.getColumnModel().getColumn(5).setResizable(false);
+            tableConsultaProduto.getColumnModel().getColumn(6).setResizable(false);
         }
 
         buttonExcluir.setText("Excluir");
@@ -191,13 +194,13 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        tabbedMain.addTab("Consultar Produtos", panelConsultar);
+        tab.addTab("Consultar Produtos", panelConsultar);
 
         lblNome.setText("Nome");
 
         lblQntd.setText("Quantidade");
 
-        panelCategoria6.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoria"));
+        panelCategoria.setBorder(javax.swing.BorderFactory.createTitledBorder("Categoria"));
 
         cat1.setText("1");
 
@@ -209,13 +212,13 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
         cat5.setText("5");
 
-        javax.swing.GroupLayout panelCategoria6Layout = new javax.swing.GroupLayout(panelCategoria6);
-        panelCategoria6.setLayout(panelCategoria6Layout);
-        panelCategoria6Layout.setHorizontalGroup(
-            panelCategoria6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCategoria6Layout.createSequentialGroup()
+        javax.swing.GroupLayout panelCategoriaLayout = new javax.swing.GroupLayout(panelCategoria);
+        panelCategoria.setLayout(panelCategoriaLayout);
+        panelCategoriaLayout.setHorizontalGroup(
+            panelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCategoriaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelCategoria6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cat1)
                     .addComponent(cat2)
                     .addComponent(cat3)
@@ -223,9 +226,9 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                     .addComponent(cat5))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
-        panelCategoria6Layout.setVerticalGroup(
-            panelCategoria6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelCategoria6Layout.createSequentialGroup()
+        panelCategoriaLayout.setVerticalGroup(
+            panelCategoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelCategoriaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(cat1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -331,12 +334,12 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                             .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 37, Short.MAX_VALUE)
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fieldQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldQtd, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblQntd))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createSequentialGroup()
-                        .addComponent(panelCategoria6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(111, 111, 111))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,7 +353,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                 .addGap(0, 23, Short.MAX_VALUE)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addComponent(panelCategoria6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(panelCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(22, 22, 22)
                         .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
@@ -363,7 +366,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldQntd))
+                            .addComponent(fieldQtd))
                         .addGap(18, 18, 18)
                         .addComponent(lblDescricao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -373,7 +376,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                         .addGap(27, 27, 27))))
         );
 
-        tabbedMain.addTab("Cadastrar Produto", panelCadastro);
+        tab.addTab("Cadastrar Produto", panelCadastro);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -381,18 +384,18 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tab, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedMain, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tabbedMain.getAccessibleContext().setAccessibleName("Consultar Produtos");
+        tab.getAccessibleContext().setAccessibleName("Consultar Produtos");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -408,7 +411,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
             //Obtém o nome do produto da linha indicada para exibição
             //de mensagem de confirmação de exclusão utilizando seu número
-            String produto = (String) tableConsultaProduto.getValueAt(row, 2);
+            String produto = (String) tableConsultaProduto.getValueAt(row, 1);
 
             //Mostra o diálogo de confirmação de exclusão
             int resposta = JOptionPane.showConfirmDialog(rootPane,
@@ -444,34 +447,40 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
     private void buttonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarActionPerformed
-        //ARRUMAR PARA CHAMAR PANEL
-
         try {
             //Obtém a linha selecionada da tabela de resultados
             final int row = tableConsultaProduto.getSelectedRow();
-
+            tab.setSelectedIndex(1);
             //Obtém o valor do ID da coluna "ID" da tabela de resultados
             Integer id = (Integer) tableConsultaProduto.getValueAt(row, 0);
             //Com o ID da coluna, chama o serviço de produto para
             //obter o produto com dados atualizados do mock
             Produto produto = Sistema.obter(id);
-            System.out.println("TelaCadastrar>Editar> ProdutoID> " + id);
-            //Cria uma nova instância da tela de edição,
-            //configura o produto selecionado como elemento a
-            //ser editado e mostra a tela de edição.
-            //Para exibir a tela, é necessário adicioná-la ao
-            //componente de desktop, o "pai" da janela corrente
-            tela.dispose();
-            tela = new EditarProduto();
-            tela.setProduto(produto);
-            tela.setTitle(produto.getNome());
-            this.getParent().add(tela);
-            tela.toFront();
 
+            fieldNome.setText(produto.getNome());
+            fieldDescricao.setText(produto.getDescricao());
+            fieldQtd.setText(String.valueOf(produto.getQuantidade()));
+            fieldPrecoCompra.setText(String.valueOf(produto.getQuantidade()));
+            fieldPrecoVenda.setText(String.valueOf(produto.getQuantidade()));
+            if(produto.getCategoria()== 1){
+                cat1.setSelected(true);
+            }if(produto.getCategoria()== 2){
+                cat2.setSelected(true);
+            }if(produto.getCategoria()== 3){
+                cat3.setSelected(true);
+            }if(produto.getCategoria()== 4){
+                cat4.setSelected(true);
+            }if(produto.getCategoria()== 5){
+                cat5.setSelected(true);
+            }if(produto.getCategoria() == 0){
+                cat1.setSelected(true);
+            }
+            
         } catch (Exception e) {
             //Se ocorrer algum erro técnico, mostra-o no console,
             //mas esconde-o do usuário
             e.printStackTrace();
+            e.getMessage();
 
             //Exibe uma mensagem de erro genérica ao usuário
             JOptionPane.showMessageDialog(rootPane, "Não é possível "
@@ -500,46 +509,36 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         pro.setNome(fieldNome.getText());
         pro.setPrecoCompra(Double.parseDouble(fieldPrecoCompra.getText()));
         pro.setPrecoVenda(Double.parseDouble(fieldPrecoVenda.getText()));
-        pro.setQuantidade(Integer.parseInt(fieldQntd.getText()));
+        pro.setQuantidade(Integer.parseInt(fieldQtd.getText()));
 
         pro.setTime(hoje);
         try {
             sis.inserir(pro);
 
-            System.out.println("jcheckbox: " + cat1);
-
             //código para pegar a categoria
             if (cat1.isSelected()) {
 
-                //converte jcheckbox para string e dps para int
-                //pro.setCategoria(Integer.parseInt(cat1.toString()));
-                //categoria += " - " + cat1.getText();
+                //recolhe o texto do jcheckbox e converte para int
+                pro.setCategoria(Integer.parseInt(cat1.getText()));
             }
             if (cat2.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat2.toString()));
-                //categoria += " - " + cat1.getText();
+                pro.setCategoria(Integer.parseInt(cat2.getText()));
             }
             if (cat3.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat3.toString()));
-                //categoria += " - " + cat1.getText();
+                pro.setCategoria(Integer.parseInt(cat3.getText()));
             }
             if (cat4.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat4.toString()));
-                //categoria += " - " + cat1.getText();
+                pro.setCategoria(Integer.parseInt(cat4.getText()));
             }
             if (cat5.isSelected()) {
-                pro.setCategoria(Integer.parseInt(cat5.toString()));
-                //categoria += " - " + cat1.getText();
+                pro.setCategoria(Integer.parseInt(cat5.getText()));
             }
 
             /* já que é possível ter mais de uma categoria o programa tem q correr todas as categorias existentes
-         * e concatenar as Strings, se o usuário selecionar a categoria 1, 2 e 3 a String categoria ficará "1 - 2 - 3"
-             */
-//        if (!categoria.isEmpty())//se a String NÃO estiver fazia quer dizer o usuário escolheu algo
-//        {
-//            pro.setCategoria(categoria);//add a categoria ao objeto
+            * e concatenar as Strings, se o usuário selecionar a categoria 1, 2 e 3 a String categoria ficará "1 - 2 - 3"
+            */
+            System.out.println("id produto "+pro.getIdProduto()+"---- id categoria");
             sis.inserirCatProd(pro.getIdProduto(), pro.getIdCategoria()); //chama a classe que adiciona a categoria ao banco
-//        }
 
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
@@ -550,8 +549,13 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         fieldDescricao.setText("");
         fieldPrecoCompra.setText("");
         fieldPrecoVenda.setText("");
-        fieldQntd.setText("");
-
+        fieldQtd.setText("");
+        cat1.setSelected(false);
+        cat2.setSelected(false);
+        cat3.setSelected(false);
+        cat4.setSelected(false);
+        cat5.setSelected(false);
+        
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     static public void atualizaTabela() throws ClassNotFoundException, SQLException {
@@ -637,7 +641,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     private javax.swing.JTextField fieldPesquisar;
     private javax.swing.JTextField fieldPrecoCompra;
     private javax.swing.JTextField fieldPrecoVenda;
-    private javax.swing.JTextField fieldQntd;
+    private javax.swing.JTextField fieldQtd;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -651,11 +655,11 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     private javax.swing.JLabel lblQntd;
     private javax.swing.JLabel lblVenda;
     private javax.swing.JPanel panelCadastro;
-    private javax.swing.JPanel panelCategoria6;
+    private javax.swing.JPanel panelCategoria;
     private javax.swing.JPanel panelConsultar;
     private javax.swing.JPanel panelPesquisar;
     private javax.swing.JPanel panelValores;
-    private javax.swing.JTabbedPane tabbedMain;
+    private javax.swing.JTabbedPane tab;
     static javax.swing.JTable tableConsultaProduto;
     // End of variables declaration//GEN-END:variables
 }

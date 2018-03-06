@@ -1,6 +1,5 @@
 package com.devolution.gerenciamento_produtos;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Produto {

@@ -91,7 +91,6 @@ public class Sistema {
             if (rs.next()) {
                 chaveGerada = rs.getInt(1);
             }
-
             produto.setIdCategoria(chaveGerada);
 
             //método para inserir na tabela produto_Categoria
@@ -183,7 +182,6 @@ public class Sistema {
                     pro.setTime(data);
                 }
             }
-            System.out.println("Sistema>Obter>produto " + pro.getNome());
             return pro;
 
         } catch (SQLException e) {

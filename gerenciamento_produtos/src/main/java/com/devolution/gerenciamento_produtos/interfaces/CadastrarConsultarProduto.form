@@ -31,7 +31,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tabbedMain" max="-2" attributes="0"/>
+              <Component id="tab" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -40,14 +40,14 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="tabbedMain" min="-2" max="-2" attributes="0"/>
+              <Component id="tab" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JTabbedPane" name="tabbedMain">
+    <Container class="javax.swing.JTabbedPane" name="tab">
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Consultar Produtos"/>
       </AccessibilityProperties>
@@ -137,6 +137,11 @@
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                       <TableColumnModel selectionModel="0">
+                        <Column maxWidth="0" minWidth="0" prefWidth="0" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
@@ -274,7 +279,7 @@
                               </Group>
                               <EmptySpace type="separate" pref="37" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="fieldQntd" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="fieldQtd" alignment="0" min="-2" pref="72" max="-2" attributes="0"/>
                                   <Component id="lblQntd" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
@@ -282,7 +287,7 @@
                       <EmptySpace pref="32" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="panelCategoria6" min="-2" max="-2" attributes="0"/>
+                              <Component id="panelCategoria" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
@@ -302,7 +307,7 @@
                       <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="panelCategoria6" min="-2" max="-2" attributes="0"/>
+                              <Component id="panelCategoria" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Component id="buttonSalvar" min="-2" pref="23" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
@@ -317,7 +322,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="fieldNome" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="fieldQntd" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="fieldQtd" alignment="3" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lblDescricao" min="-2" max="-2" attributes="0"/>
@@ -345,9 +350,9 @@
                 <Property name="text" type="java.lang.String" value="Quantidade"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="fieldQntd">
+            <Component class="javax.swing.JTextField" name="fieldQtd">
             </Component>
-            <Container class="javax.swing.JPanel" name="panelCategoria6">
+            <Container class="javax.swing.JPanel" name="panelCategoria">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
