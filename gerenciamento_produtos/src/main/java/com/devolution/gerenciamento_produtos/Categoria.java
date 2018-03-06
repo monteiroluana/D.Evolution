@@ -1,10 +1,9 @@
 package com.devolution.gerenciamento_produtos;
 
-/**
- *
- * @author rodrigo.nhsilva
- */
 public class Categoria {
+
+    private int id;
+    private String nome;
 
     public int getId() {
         return id;
@@ -21,7 +20,5 @@ public class Categoria {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    private int id;
-    private String nome;
-    
+
 }

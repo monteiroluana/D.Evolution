@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
     static Sistema sis = new Sistema();
-    Tela_EditarProdutos tela = new Tela_EditarProdutos();
+    EditarProduto tela = new EditarProduto();
 
     /**
      * Creates new form Cadastrar_produtos
@@ -159,7 +159,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                 .addGroup(panelConsultarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelConsultarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(buttonEditar)
@@ -333,43 +333,44 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                         .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldQntd, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblQntd))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createSequentialGroup()
                         .addComponent(panelCategoria6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createSequentialGroup()
-                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(buttonCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
-                            .addComponent(buttonSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(43, 43, 43))))
+                        .addGap(111, 111, 111))
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(buttonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         panelCadastroLayout.setVerticalGroup(
             panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelCadastroLayout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addComponent(panelCategoria6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
-                .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(buttonCancelar)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(panelCadastroLayout.createSequentialGroup()
                 .addGap(0, 23, Short.MAX_VALUE)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblQntd, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldQntd))
-                .addGap(18, 18, 18)
-                .addComponent(lblDescricao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
-                .addComponent(panelValores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addComponent(panelCategoria6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(buttonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(buttonCancelar)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblQntd, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldQntd))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblDescricao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27)
+                        .addComponent(panelValores, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
 
         tabbedMain.addTab("Cadastrar Produto", panelCadastro);
@@ -380,8 +381,8 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabbedMain, javax.swing.GroupLayout.PREFERRED_SIZE, 503, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabbedMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -397,10 +398,9 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonExcluirActionPerformed
-        //ARRUMAR
+//OK?
 
-//Verifica se há itens selecionados para exclusão.
-        //Caso negativo, ignora o comando
+        //Verifica se há itens selecionados para exclusão.
         if (tableConsultaProduto.getSelectedRow() >= 0) {
 
             //Obtém a linha do item selecionado
@@ -423,11 +423,10 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
 
                     //Instânciando a Classe Sistema
                     //Chamando o método de excluir produto;
-                    Sistema sistema = new Sistema();
-                    sistema.excluir(id);
+                    sis.excluir(id);
 
                     //Atualiza a lista após a "exclusão"
-//                    this.atualizaTabela();
+                    atualizaTabela();
 
                 } catch (Exception e) {
                     //Se ocorrer algum erro técnico, mostra-o no console,
@@ -439,6 +438,8 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
                             "Falha na Exclusão", JOptionPane.ERROR_MESSAGE);
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Produto não selecionado!");
         }
     }//GEN-LAST:event_buttonExcluirActionPerformed
 
@@ -461,7 +462,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
             //Para exibir a tela, é necessário adicioná-la ao
             //componente de desktop, o "pai" da janela corrente
             tela.dispose();
-            tela = new Tela_EditarProdutos();
+            tela = new EditarProduto();
             tela.setProduto(produto);
             tela.setTitle(produto.getNome());
             this.getParent().add(tela);
@@ -480,10 +481,10 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEditarActionPerformed
 
     private void buttonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPesquisarActionPerformed
-        //NESCESSÁRIO IMPLEMENTAR PESQUISA/ CONSULTA DE PRODUTOS E LISTAGEM
+        //NECESSÁRIO IMPLEMENTAR PESQUISA/ CONSULTA DE PRODUTOS E LISTAGEM
         //Solução provisória ... por enquanto ele vai chamar o método atualizar
         try {
-            CadastrarConsultarProduto.atualizaTabela();
+            sis.listar();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -493,46 +494,55 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         String categoria = "";
         Timestamp hoje = new Timestamp(System.currentTimeMillis());//armazena a data e hora do sistema
         Produto pro = new Produto();
-        Sistema sis = new Sistema();
 
         //pega os dados dos campos e os adiciona ao objeto pro da classe produto
         pro.setDescricao(fieldDescricao.getText());
         pro.setNome(fieldNome.getText());
-        pro.setPreco_compra(Double.parseDouble(fieldPrecoCompra.getText()));
-        pro.setPreco_venda(Double.parseDouble(fieldPrecoVenda.getText()));
+        pro.setPrecoCompra(Double.parseDouble(fieldPrecoCompra.getText()));
+        pro.setPrecoVenda(Double.parseDouble(fieldPrecoVenda.getText()));
         pro.setQuantidade(Integer.parseInt(fieldQntd.getText()));
 
         pro.setTime(hoje);
         try {
             sis.inserir(pro);
-            //----------------------------------------------------------------------
+
+            System.out.println("jcheckbox: " + cat1);
+
+            //código para pegar a categoria
+            if (cat1.isSelected()) {
+
+                //converte jcheckbox para string e dps para int
+                //pro.setCategoria(Integer.parseInt(cat1.toString()));
+                //categoria += " - " + cat1.getText();
+            }
+            if (cat2.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat2.toString()));
+                //categoria += " - " + cat1.getText();
+            }
+            if (cat3.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat3.toString()));
+                //categoria += " - " + cat1.getText();
+            }
+            if (cat4.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat4.toString()));
+                //categoria += " - " + cat1.getText();
+            }
+            if (cat5.isSelected()) {
+                pro.setCategoria(Integer.parseInt(cat5.toString()));
+                //categoria += " - " + cat1.getText();
+            }
+
+            /* já que é possível ter mais de uma categoria o programa tem q correr todas as categorias existentes
+         * e concatenar as Strings, se o usuário selecionar a categoria 1, 2 e 3 a String categoria ficará "1 - 2 - 3"
+             */
+//        if (!categoria.isEmpty())//se a String NÃO estiver fazia quer dizer o usuário escolheu algo
+//        {
+//            pro.setCategoria(categoria);//add a categoria ao objeto
+            sis.inserirCatProd(pro.getIdProduto(), pro.getIdCategoria()); //chama a classe que adiciona a categoria ao banco
+//        }
+
         } catch (SQLException ex) {
             Logger.getLogger(CadastrarConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        //código para pegar a categoria
-        if (cat1.isSelected()) {
-            categoria += " - " + cat1.getText();
-        }
-        if (cat2.isSelected()) {
-            categoria += " - " + cat1.getText();
-        }
-        if (cat3.isSelected()) {
-            categoria += " - " + cat1.getText();
-        }
-        if (cat4.isSelected()) {
-            categoria += " - " + cat1.getText();
-        }
-        if (cat5.isSelected()) {
-            categoria += " - " + cat1.getText();
-        }
-        /* já que é possível ter mais de uma categoria o programa tem q correr todas as categorias existentes
-         * e concatenar as Strings, se o usuário selecionar a categoria 1, 2 e 3 a String categoria ficará "1 - 2 - 3"
-         */
-        if (!categoria.isEmpty())//se a String NÃO estiver fazia quer dizer o usuário escolheu algo
-        {
-            pro.setCategoria(categoria);//add a categoria ao objeto
-            sis.inserirCatProd(pro.getId_produto(), pro.getId_categoria()); //chama a classe que adiciona a categoria ao banco
         }
 
         //limpa os campos
@@ -541,7 +551,7 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
         fieldPrecoCompra.setText("");
         fieldPrecoVenda.setText("");
         fieldQntd.setText("");
-        //---------------------------
+
     }//GEN-LAST:event_buttonSalvarActionPerformed
 
     static public void atualizaTabela() throws ClassNotFoundException, SQLException {
@@ -556,13 +566,14 @@ public class CadastrarConsultarProduto extends javax.swing.JFrame {
             Produto pro = lista.get(i);
             if (pro != null) {
                 Object[] row = new Object[7];
-                row[0] = pro.getId_produto();
+                row[0] = pro.getIdProduto();
                 row[1] = pro.getNome();
                 row[2] = pro.getDescricao();
-                row[3] = pro.getPreco_compra();
-                row[4] = pro.getPreco_venda();
+                row[3] = pro.getPrecoCompra();
+                row[4] = pro.getPrecoVenda();
                 row[5] = pro.getQuantidade();
                 row[6] = pro.getTime();
+
                 model.addRow(row);
             }
         }

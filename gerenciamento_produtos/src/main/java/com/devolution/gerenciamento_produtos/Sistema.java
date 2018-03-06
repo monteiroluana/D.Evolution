@@ -1,6 +1,6 @@
 package com.devolution.gerenciamento_produtos;
 
-import com.devolution.gerenciamento_produtos.interfaces.Cadastrar_produtos;
+import com.devolution.gerenciamento_produtos.interfaces.CadastrarConsultarProduto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class Sistema {
 
-    static Cadastrar_produtos cad = new Cadastrar_produtos();
+    static CadastrarConsultarProduto cad = new CadastrarConsultarProduto();
 
     public List<Produto> listar() throws ClassNotFoundException, SQLException {
         List<Produto> lista = new ArrayList<Produto>();
@@ -26,7 +26,7 @@ public class Sistema {
                 ResultSet resultados = stmt.executeQuery();) {
 
             while (resultados.next()) {
-                 Integer id = resultados.getInt("id");
+                Integer id = resultados.getInt("id");
                 String nome = resultados.getString("nome");
                 String descricao = resultados.getString("descricao");
                 double venda = resultados.getDouble("preco_venda");
@@ -35,11 +35,11 @@ public class Sistema {
                 Timestamp data = resultados.getTimestamp("dt_cadastro");
 
                 Produto pro = new Produto();
-                pro.setId_produto(id);
+                pro.setIdProduto(id);
                 pro.setNome(nome);
                 pro.setDescricao(descricao);
-                pro.setPreco_compra(compra);
-                pro.setPreco_venda(venda);
+                pro.setPrecoCompra(compra);
+                pro.setPrecoVenda(venda);
                 pro.setQuantidade(quantidadde);
                 pro.setTime(data);
                 lista.add(pro);
@@ -53,7 +53,7 @@ public class Sistema {
         try {
             Connection conn = Conexao.obterConexao();
             PreparedStatement stmt = conn.prepareStatement("INSERT INTO PRODUTO_CATEGORIA (id_produto, id_categoria)"
-                    + "Values(?, ?)");
+                    + "VALUES(?, ?)");
             stmt.setInt(1, idProd);
             stmt.setInt(2, idCat);
             stmt.execute();
@@ -78,8 +78,8 @@ public class Sistema {
 
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getDescricao());
-            stmt.setDouble(3, produto.getPreco_compra());
-            stmt.setDouble(4, produto.getPreco_venda());
+            stmt.setDouble(3, produto.getPrecoCompra());
+            stmt.setDouble(4, produto.getPrecoVenda());
             stmt.setInt(5, produto.getQuantidade());
             stmt.setTimestamp(6, produto.getTime());
 
@@ -92,10 +92,10 @@ public class Sistema {
                 chaveGerada = rs.getInt(1);
             }
 
-            produto.setId_categoria(chaveGerada);
+            produto.setIdCategoria(chaveGerada);
 
             //método para inserir na tabela produto_Categoria
-            inserirCatProd(produto.getId_produto(), produto.getId_categoria());
+            inserirCatProd(chaveGerada, produto.getIdCategoria()); //alterado getIdProduto para chaveGerada
 
         } catch (ClassNotFoundException | SQLException ex) {
             System.err.println(ex.getMessage());
@@ -119,10 +119,10 @@ public class Sistema {
 
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getDescricao());
-            stmt.setDouble(3, produto.getPreco_compra());
-            stmt.setDouble(4, produto.getPreco_venda());
+            stmt.setDouble(3, produto.getPrecoCompra());
+            stmt.setDouble(4, produto.getPrecoVenda());
             stmt.setInt(5, produto.getQuantidade());
-            stmt.setInt(6, produto.getId_produto());
+            stmt.setInt(6, produto.getIdProduto());
 
             stmt.executeUpdate();
 
@@ -177,8 +177,8 @@ public class Sistema {
 
                     pro.setNome(nome);
                     pro.setDescricao(descricao);
-                    pro.setPreco_compra(compra);
-                    pro.setPreco_venda(venda);
+                    pro.setPrecoCompra(compra);
+                    pro.setPrecoVenda(venda);
                     pro.setQuantidade(quantidadde);
                     pro.setTime(data);
                 }

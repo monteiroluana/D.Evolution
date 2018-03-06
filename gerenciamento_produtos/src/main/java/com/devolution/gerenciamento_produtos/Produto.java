@@ -3,33 +3,39 @@ package com.devolution.gerenciamento_produtos;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-/**
- *
- * @author rodrigo.nhsilva
- */
 public class Produto {
 
-    public int getId_produto() {
-        return id_produto;
+    private String nome;
+    private String descricao;
+    private int categoria;
+    private double precoCompra;
+    private double precoVenda;
+    private int quantidade;
+    private Timestamp time;
+    private int idProduto;
+    private int idCategoria;
+
+    public int getIdProduto() {
+        return idProduto;
     }
 
-    public void setId_produto(int id_produto) {
-        this.id_produto = id_produto;
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
-    public int getId_categoria() {
-        return id_categoria;
+    public int getIdCategoria() {
+        return idCategoria;
     }
 
-    public void setId_categoria(int id_categoria) {
-        this.id_categoria = id_categoria;
+    public void setIdCategoria(int idCategoria) {
+        this.idCategoria = idCategoria;
     }
 
-    public String getCategoria() {
+    public int getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(String categoria) {
+    public void setCategoria(int categoria) {
         this.categoria = categoria;
     }
 
@@ -49,20 +55,20 @@ public class Produto {
         this.descricao = descricao;
     }
 
-    public double getPreco_compra() {
-        return preco_compra;
+    public double getPrecoCompra() {
+        return precoCompra;
     }
 
-    public void setPreco_compra(double preco_compra) {
-        this.preco_compra = preco_compra;
+    public void setPrecoCompra(double precoCompra) {
+        this.precoCompra = precoCompra;
     }
 
-    public double getPreco_venda() {
-        return preco_venda;
+    public double getPrecoVenda() {
+        return precoVenda;
     }
 
-    public void setPreco_venda(double preco_venda) {
-        this.preco_venda = preco_venda;
+    public void setPrecoVenda(double precoVenda) {
+        this.precoVenda = precoVenda;
     }
 
     public int getQuantidade() {
@@ -80,13 +86,5 @@ public class Produto {
     public void setTime(Timestamp time) {
         this.time = time;
     }
-    private String nome;
-    private String descricao;
-    private String categoria;
-    private double preco_compra;
-    private double preco_venda;
-    private int quantidade;
-    private Timestamp time;
-    private int id_produto;
-    private int id_categoria;
+
 }
